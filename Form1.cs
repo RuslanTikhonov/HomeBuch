@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
+using System.Globalization;
+using System.IO;
 
 namespace HomeBuch
 {
@@ -357,6 +359,26 @@ namespace HomeBuch
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                try
+                {
+                    double result1, result2, res, res2, res3;
+                    result1 = Math.Round(Convert.ToDouble(dataGridView1[2, i].Value, CultureInfo.InvariantCulture), 2);
+                    result2 = Math.Round(Convert.ToDouble(dataGridView1[3, i].Value, CultureInfo.InvariantCulture), 2);
+                    res = result1 + result2;
+                    res2 = Math.Round(Convert.ToDouble(dataGridView1[4, i].Value, CultureInfo.InvariantCulture), 2);
+                    res3 = Math.Round(res / res2);
+                    dataGridView1.Rows[i].Cells[5].Value = res3;
+                }catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
     }
