@@ -381,5 +381,11 @@ namespace HomeBuch
                 }
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form2 crypto = new Form2();
+            crypto.Show();
+        }
     }
 }
