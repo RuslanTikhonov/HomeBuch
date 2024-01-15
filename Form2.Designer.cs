@@ -30,10 +30,13 @@
         {
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.price = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.total_price = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.add_crypto = new System.Windows.Forms.Button();
+            this.average_price = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -53,24 +56,24 @@
             "Solana",
             "Sui",
             "USDT"});
-            this.comboBox1.Location = new System.Drawing.Point(126, 12);
+            this.comboBox1.Location = new System.Drawing.Point(136, 12);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 0;
             // 
             // price
             // 
-            this.price.Location = new System.Drawing.Point(126, 54);
+            this.price.Location = new System.Drawing.Point(136, 54);
             this.price.Name = "price";
             this.price.Size = new System.Drawing.Size(121, 20);
             this.price.TabIndex = 1;
             // 
-            // textBox2
+            // total_price
             // 
-            this.textBox2.Location = new System.Drawing.Point(126, 95);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 20);
-            this.textBox2.TabIndex = 2;
+            this.total_price.Location = new System.Drawing.Point(136, 95);
+            this.total_price.Name = "total_price";
+            this.total_price.Size = new System.Drawing.Size(121, 20);
+            this.total_price.TabIndex = 2;
             // 
             // label1
             // 
@@ -102,19 +105,50 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Сумма, $";
             // 
+            // add_crypto
+            // 
+            this.add_crypto.Location = new System.Drawing.Point(136, 176);
+            this.add_crypto.Name = "add_crypto";
+            this.add_crypto.Size = new System.Drawing.Size(121, 23);
+            this.add_crypto.TabIndex = 6;
+            this.add_crypto.Text = "Добавить";
+            this.add_crypto.UseVisualStyleBackColor = true;
+            this.add_crypto.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // average_price
+            // 
+            this.average_price.Location = new System.Drawing.Point(136, 137);
+            this.average_price.Name = "average_price";
+            this.average_price.Size = new System.Drawing.Size(121, 20);
+            this.average_price.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(12, 137);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(117, 24);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Количество";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(380, 386);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.average_price);
+            this.Controls.Add(this.add_crypto);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.total_price);
             this.Controls.Add(this.price);
             this.Controls.Add(this.comboBox1);
             this.Name = "Form2";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -124,9 +158,12 @@
 
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox price;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox total_price;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button add_crypto;
+        private System.Windows.Forms.TextBox average_price;
+        private System.Windows.Forms.Label label4;
     }
 }

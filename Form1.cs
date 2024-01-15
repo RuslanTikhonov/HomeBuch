@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Globalization;
 using System.IO;
+using System.Windows.Navigation;
 
 namespace HomeBuch
 {
@@ -30,6 +31,21 @@ namespace HomeBuch
         private DataSet dataSetR = null;
         private SqlCommandBuilder sqlBuilderR = null;
         private bool newRowAddingR = false;
+
+        private SqlConnection sqlConnectionC = null;
+        private SqlCommandBuilder sqlCommandBuilderC = null;
+        private SqlDataAdapter sqlDataAdapterC = null;
+        private DataSet dataSetC = null;
+        private SqlCommandBuilder sqlBuilderC = null;
+        private bool newRowAddingC = false;
+
+
+        public static void LoadDataGread()
+        {
+
+        }
+
+
 
         public Form1()
         {
@@ -54,7 +70,7 @@ namespace HomeBuch
                     dataGridView1[6, i] = linkCell;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -92,6 +108,9 @@ namespace HomeBuch
                 sqlConnectionR.Close();
             }
         }
+
+
+
 
 
         private void ReloadData()
@@ -147,9 +166,15 @@ namespace HomeBuch
             sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["BuchDB"].ConnectionString);
             sqlConnection.Open();
             LoadData();
+
             sqlConnectionR = new SqlConnection(ConfigurationManager.ConnectionStrings["BuchDB"].ConnectionString);
             sqlConnectionR.Open();
             LoadDataR();
+
+            sqlConnectionC = new SqlConnection(ConfigurationManager.ConnectionStrings["BuchDB"].ConnectionString);
+            sqlConnectionC.Open();
+            LoadDataCrypto();
+
 
         }
 
@@ -162,6 +187,7 @@ namespace HomeBuch
             //datatable1.Rows.Add(row);
             ReloadData();
             ReloadDataRashod();
+            ReloadDataCrypto();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -188,7 +214,7 @@ namespace HomeBuch
                     {
                         int rowIndex = dataGridView1.Rows.Count - 2;
                         DataRow row = dataSet.Tables["Zarplata"].NewRow();
-                        
+
                         row["Month"] = dataGridView1.Rows[rowIndex].Cells["Month"].Value;
                         row["Zarplata"] = dataGridView1.Rows[rowIndex].Cells["Zarplata"].Value;
                         row["Avans"] = dataGridView1.Rows[rowIndex].Cells["Avans"].Value;
@@ -252,7 +278,7 @@ namespace HomeBuch
             {
                 if (newRowAdding == false)
                 {
-                    int rowIndex = dataGridView1.SelectedCells[0].RowIndex; 
+                    int rowIndex = dataGridView1.SelectedCells[0].RowIndex;
                     DataGridViewRow editingRow = dataGridView1.Rows[rowIndex];
                     DataGridViewCell linkCell = new DataGridViewLinkCell();
                     dataGridView1[6, rowIndex] = linkCell;
@@ -366,19 +392,168 @@ namespace HomeBuch
         {
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                try
-                {
+                
                     double result1, result2, res, res2, res3;
                     result1 = Math.Round(Convert.ToDouble(dataGridView1[2, i].Value, CultureInfo.InvariantCulture), 2);
                     result2 = Math.Round(Convert.ToDouble(dataGridView1[3, i].Value, CultureInfo.InvariantCulture), 2);
                     res = result1 + result2;
                     res2 = Math.Round(Convert.ToDouble(dataGridView1[4, i].Value, CultureInfo.InvariantCulture), 2);
-                    res3 = Math.Round(res / res2);
+                    res3 = Math.Round((res / res2), 2);
                     dataGridView1.Rows[i].Cells[5].Value = res3;
-                }catch (Exception ex)
+                
+            }
+        }
+
+
+        //Блок крипто
+
+
+        private void LoadDataCrypto()
+        {
+            try
+            {
+                sqlDataAdapterC = new SqlDataAdapter("SELECT *, 'Delete' AS [Command] FROM Crypto", sqlConnectionR);
+                sqlBuilderC = new SqlCommandBuilder(sqlDataAdapterR);
+                sqlBuilderC.GetInsertCommand();
+                sqlBuilderC.GetUpdateCommand();
+                sqlBuilderC.GetDeleteCommand();
+                dataSetC = new DataSet();
+                sqlDataAdapterC.Fill(dataSetC, "Crypto");
+                dataGridView3.DataSource = dataSetC.Tables["Crypto"];
+                for (int i = 0; i < dataGridView3.Rows.Count; i++)
                 {
-                    MessageBox.Show(ex.Message);
+                    DataGridViewLinkCell linkCellC = new DataGridViewLinkCell();
+                    dataGridView3[3, i] = linkCellC;
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                sqlConnectionR.Close();
+            }
+        }
+
+        private void ReloadDataCrypto()
+        {
+            try
+            {
+                dataSetC.Tables["Crypto"].Clear();
+                sqlDataAdapterC.Fill(dataSetC, "Crypto");
+                dataGridView3.DataSource = dataSetC.Tables["Crypto"];
+                for (int i = 0; i < dataGridView3.Rows.Count; i++)
+                {
+                    DataGridViewLinkCell linkCellC = new DataGridViewLinkCell();
+                    dataGridView3[3, i] = linkCellC;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                sqlConnectionR.Close();
+            }
+        }
+
+
+        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 3)
+                {
+                    string taskC = dataGridView3.Rows[e.RowIndex].Cells[6].Value.ToString();
+
+                    if (taskC == "Delete")
+                    {
+                        if (MessageBox.Show("Удалить строку?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                            == DialogResult.Yes)
+                        {
+                            int rowIndexC = e.RowIndex;
+                            dataGridView3.Rows.RemoveAt(rowIndexC);
+                            dataSetC.Tables["Crypto"].Rows[rowIndexC].Delete();
+                            sqlDataAdapterC.Update(dataSetC, "Crypto");
+                        }
+                    }
+
+                    else if (taskC == "Insert")
+                    {
+                        int rowIndexC = dataGridView3.Rows.Count - 2;
+                        DataRow rowC = dataSetC.Tables["Crypto"].NewRow();
+
+                        rowC["Month"] = dataGridView3.Rows[rowIndexC].Cells["Month"].Value;
+                        rowC["Rashod"] = dataGridView3.Rows[rowIndexC].Cells["Rashod"].Value;
+
+
+                        dataSetC.Tables["Crypto"].Rows.Add(rowC);
+                        dataSetC.Tables["Crypto"].Rows.RemoveAt(dataSetC.Tables["Crypto"].Rows.Count - 1);
+                        dataGridView3.Rows.RemoveAt(dataGridView3.Rows.Count - 2);
+                        dataGridView3.Rows[e.RowIndex].Cells[3].Value = "Delete";
+
+                        sqlDataAdapterC.Update(dataSetC, "Crypto");
+                        newRowAddingC = false;
+                    }
+                    else if (taskC == "Update")
+                    {
+                        int rC = e.RowIndex;
+
+                        dataSetC.Tables["Crypto"].Rows[rC]["Month"] = dataGridView3.Rows[rC].Cells["Month"].Value;
+                        dataSetC.Tables["Crypto"].Rows[rC]["Rashod"] = dataGridView3.Rows[rC].Cells["Rashod"].Value;
+
+
+                        sqlDataAdapterC.Update(dataSetC, "Rashod");
+                        dataGridView3.Rows[e.RowIndex].Cells[3].Value = "Delete";
+
+                    }
+                    ReloadDataCrypto();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dataGridView3_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (newRowAddingC == false)
+                {
+                    int rowIndexC = dataGridView3.SelectedCells[0].RowIndex;
+                    DataGridViewRow editingRowC = dataGridView3.Rows[rowIndexC];
+                    DataGridViewCell linkCellC = new DataGridViewLinkCell();
+                    dataGridView3[3, rowIndexC] = linkCellC;
+                    editingRowC.Cells["Command"].Value = "Update";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dataGridView3_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            try
+            {
+                if (newRowAddingC == false)
+                {
+                    newRowAddingC = true;
+                    int lastRowC = dataGridView3.Rows.Count - 2;
+                    DataGridViewRow rowC = dataGridView3.Rows[lastRowC];
+                    DataGridViewLinkCell linkCellC = new DataGridViewLinkCell();
+                    dataGridView3[3, lastRowC] = linkCellC;
+                    rowC.Cells["Command"].Value = "Insert";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -387,5 +562,12 @@ namespace HomeBuch
             Form2 crypto = new Form2();
             crypto.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            RashodGraph graf = new RashodGraph();
+            graf.Show();
+        }
     }
+
 }

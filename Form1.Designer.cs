@@ -36,21 +36,23 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.zarplataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buchDBDataSet = new HomeBuch.BuchDBDataSet();
             this.zarplataTableAdapter = new HomeBuch.BuchDBDataSetTableAdapters.ZarplataTableAdapter();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zarplataBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buchDBDataSet)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zarplataBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buchDBDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -58,6 +60,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -67,6 +70,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button4);
             this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Controls.Add(this.button1);
@@ -80,11 +84,11 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(124, 355);
+            this.button2.Location = new System.Drawing.Point(6, 352);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(122, 48);
             this.button2.TabIndex = 3;
-            this.button2.Text = "button2";
+            this.button2.Text = "Обновить данные";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -102,12 +106,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(0, 355);
+            this.button1.Location = new System.Drawing.Point(166, 355);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(118, 45);
             this.button1.TabIndex = 1;
             this.button1.Text = "Обновить данные";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tabPage2
@@ -133,6 +138,47 @@
             this.dataGridView2.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellValueChanged);
             this.dataGridView2.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridView2_UserAddedRow);
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.button3);
+            this.tabPage3.Controls.Add(this.dataGridView3);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(853, 403);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Крипта";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(0, 373);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(141, 30);
+            this.button3.TabIndex = 1;
+            this.button3.Text = "Добавить транзакцию";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dataGridView3.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.Size = new System.Drawing.Size(847, 371);
+            this.dataGridView3.TabIndex = 0;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(853, 403);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Накопления";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
             // zarplataBindingSource
             // 
             this.zarplataBindingSource.DataMember = "Zarplata";
@@ -147,36 +193,15 @@
             // 
             this.zarplataTableAdapter.ClearBeforeFill = true;
             // 
-            // tabPage3
+            // button4
             // 
-            this.tabPage3.Controls.Add(this.button3);
-            this.tabPage3.Controls.Add(this.dataGridView3);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(853, 403);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Крипта";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView3
-            // 
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dataGridView3.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(847, 371);
-            this.dataGridView3.TabIndex = 0;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(0, 373);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(141, 30);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Добавить транзакцию";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button4.Location = new System.Drawing.Point(310, 355);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(125, 45);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "Показать график";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form1
             // 
@@ -192,10 +217,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zarplataBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buchDBDataSet)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zarplataBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buchDBDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -215,6 +240,8 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button button4;
     }
 }
 
