@@ -563,9 +563,16 @@ namespace HomeBuch
             crypto.Show();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+
+        private void button5_Click(object sender, EventArgs e)
         {
             RashodGraph graf = new RashodGraph();
+            graf.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DochodGrapg graf = new DochodGrapg();
             graf.Show();
         }
     }

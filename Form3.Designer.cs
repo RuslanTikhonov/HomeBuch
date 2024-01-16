@@ -32,23 +32,24 @@
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.cartesianChart1 = new LiveCharts.Wpf.CartesianChart();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.buchDBDataSet2 = new HomeBuch.BuchDBDataSet2();
             this.rashodBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.buchDBDataSet2 = new HomeBuch.BuchDBDataSet2();
             this.rashodTableAdapter = new HomeBuch.BuchDBDataSet2TableAdapters.RashodTableAdapter();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.monthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rashodDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buchDBDataSet2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rashodBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buchDBDataSet2)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // elementHost1
             // 
-            this.elementHost1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.elementHost1.Location = new System.Drawing.Point(366, 0);
+            this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.elementHost1.Location = new System.Drawing.Point(298, 3);
             this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(434, 450);
+            this.elementHost1.Size = new System.Drawing.Size(711, 599);
             this.elementHost1.TabIndex = 0;
             this.elementHost1.Text = "elementHost1";
             this.elementHost1.Child = this.cartesianChart1;
@@ -59,36 +60,43 @@
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
             this.monthDataGridViewTextBoxColumn,
             this.rashodDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.rashodBindingSource;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(360, 450);
+            this.dataGridView1.Size = new System.Drawing.Size(289, 599);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // buchDBDataSet2
-            // 
-            this.buchDBDataSet2.DataSetName = "BuchDBDataSet2";
-            this.buchDBDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // rashodBindingSource
             // 
             this.rashodBindingSource.DataMember = "Rashod";
             this.rashodBindingSource.DataSource = this.buchDBDataSet2;
             // 
+            // buchDBDataSet2
+            // 
+            this.buchDBDataSet2.DataSetName = "BuchDBDataSet2";
+            this.buchDBDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // rashodTableAdapter
             // 
             this.rashodTableAdapter.ClearBeforeFill = true;
             // 
-            // idDataGridViewTextBoxColumn
+            // tableLayoutPanel1
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.1502F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.8498F));
+            this.tableLayoutPanel1.Controls.Add(this.elementHost1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1012, 605);
+            this.tableLayoutPanel1.TabIndex = 2;
             // 
             // monthDataGridViewTextBoxColumn
             // 
@@ -106,15 +114,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.elementHost1);
+            this.ClientSize = new System.Drawing.Size(1012, 605);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "RashodGraph";
             this.Text = "График расходов";
             this.Load += new System.EventHandler(this.Form3_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buchDBDataSet2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rashodBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buchDBDataSet2)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -127,7 +135,7 @@
         private BuchDBDataSet2 buchDBDataSet2;
         private System.Windows.Forms.BindingSource rashodBindingSource;
         private BuchDBDataSet2TableAdapters.RashodTableAdapter rashodTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn monthDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn rashodDataGridViewTextBoxColumn;
     }

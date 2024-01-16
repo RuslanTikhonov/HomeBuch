@@ -35,6 +35,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.RashodGraph = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
@@ -117,6 +118,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.RashodGraph);
             this.tabPage2.Controls.Add(this.dataGridView2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -125,6 +127,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Расходы";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // RashodGraph
+            // 
+            this.RashodGraph.Location = new System.Drawing.Point(685, 6);
+            this.RashodGraph.Name = "RashodGraph";
+            this.RashodGraph.Size = new System.Drawing.Size(160, 53);
+            this.RashodGraph.TabIndex = 1;
+            this.RashodGraph.Text = "Построить график";
+            this.RashodGraph.UseVisualStyleBackColor = true;
+            this.RashodGraph.Click += new System.EventHandler(this.button5_Click);
             // 
             // dataGridView2
             // 
@@ -195,11 +207,11 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(310, 355);
+            this.button4.Location = new System.Drawing.Point(302, 355);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(125, 45);
+            this.button4.Size = new System.Drawing.Size(152, 45);
             this.button4.TabIndex = 4;
-            this.button4.Text = "Показать график";
+            this.button4.Text = "Построить график";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -241,6 +253,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button RashodGraph;
         private System.Windows.Forms.Button button4;
     }
 }
